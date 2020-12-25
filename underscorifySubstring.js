@@ -42,7 +42,7 @@ let underscorifySubstring = function (string, substring) {
 
   if (!flag) return str; // return main string intact, didn't do any changes
 
-  return [...words].join(' ');
+  return [...words].join(' '); // return normal string view
 };
 
 // let str = 'testthis is a testtest to see if testestest it works';
