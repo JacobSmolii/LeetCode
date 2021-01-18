@@ -17,30 +17,24 @@
 //              Total amount you can rob = 2 + 9 + 1 = 12.
 
 var rob = function (nums) {
+  // create an array where you will be storing the sum prev amount of money
+  if (nums[0] == undefined) return 0;
   let rest = 0;
+  let arr = [];
+  arr[0] = 0;
+  arr.push(nums[0]);
 
   for (let i = 1; i < nums.length; i++) {
-    let tmp = nums[i - 1] + nums[i + 1];
-    if (i == 1 && tmp > nums[i]) {
-      if (tmp > nums[i]) {
-        rest += tmp;
-        i++;
-      } else {
-        rest += nums[i];
-        i++;
-      }
-    } else {
-      if (nums[i] > nums[i + 1]) {
-        rest += nums[i];
-      } else {
-        rest += nums[i + 1];
-      }
-    }
+    let tmp = arr[i - 1] + nums[i]; // sum from arr[i - 1] of sums and next elem of the input array
+
+    arr.push(Math.max(tmp, arr[i]));
   }
-  return rest;
+  return arr[arr.length - 1]; // we always store the bigest sum at the end of the array;
 };
 
 // let nums = [2, 1, 1, 2];
-let nums = [2, 7, 9, 3, 1];
+// let nums = [2, 7, 9, 3, 1];
+// let nums = [6, 3, 10, 8, 2, 10, 3, 5, 10, 5, 3];
+let nums = [0, 3, 2, 0];
 
 console.log(rob(nums));
