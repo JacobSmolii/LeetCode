@@ -6,17 +6,22 @@
 // You may assume that the array is non-empty and the majority element always exist
 //  in the array.
 
+// var majorityElement = function (nums) {
+//   let map = {};
+
+//   for (let i = 0; i < nums.length; i++) {
+//     if (map[nums[i]]) map[nums[i]]++;
+//     else map[nums[i]] = 1;
+//   }
+
+//   for (let i = 0; i < nums.length; i++) {
+//     if (map[nums[i]] > Math.floor(nums.length / 2)) return nums[i];
+//   }
+// };
+
 var majorityElement = function (nums) {
-  let map = {};
-
-  for (let i = 0; i < nums.length; i++) {
-    if (map[nums[i]]) map[nums[i]]++;
-    else map[nums[i]] = 1;
-  }
-
-  for (let i = 0; i < nums.length; i++) {
-    if (map[nums[i]] > Math.floor(nums.length / 2)) return nums[i];
-  }
+  nums.sort((a, b) => a - b);
+  return nums[Math.floor(nums.length / 2)];
 };
 
 let nums = [3, 2, 3];
