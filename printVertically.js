@@ -46,20 +46,13 @@ var printVertically = function (s) {
       if (i > item.length - 1) word += ' ';
       else word += item[i];
     });
-    rest.push(word);
+    // you can delete spaces here or you need to go through the array one more time
+    rest.push(word.trimEnd());
   }
 
-  for (let i = 0; i < rest.length; i++) {
-    rest[i] = rest[i].trimEnd();
-  }
-
-  //   for (let word of rest) {
-  //     word.trimEnd();
-  //     let i = 0;
-  //   }
-
-  //   rest.map((word) => (word = word.trimEnd()));
-
+  // for (let i = 0; i < rest.length; i++) {
+  //   rest[i] = rest[i].trimEnd();
+  // }
   return rest;
 };
 
