@@ -38,31 +38,6 @@
 // chars[i] is a lower-case English letter, upper-case English letter, digit, or symbol.
 
 var compress1 = function (chars) {
-  //   let c = chars[0];
-  //   if (chars.length == 1) return 1;
-  //   let cLen = 1;
-  //   let s = '';
-  //   for (let i = 1; i < chars.length; i++) {
-  //     if (chars[i] != chars[i - 1] || i == chars.length - 1) {
-  //       s += c;
-  //       if (i == chars.length - 1) {
-  //         if (chars[i] == chars[i - 1]) cLen++;
-  //         else {
-  //           c = chars[i];
-  //           cLen = 1;
-  //         }
-  //       }
-  //       if (cLen > 1) s += cLen;
-  //       c = chars[i];
-  //       cLen = 1;
-  //     } else cLen++;
-  //   }
-  //   chars = [];
-  //   for (let i = 0; i < s.length; i++) chars.push(s[i]);
-  //   return s.length;
-};
-
-var compress = function (chars) {
   let cLen = 1;
   let c = chars[0];
 
@@ -96,52 +71,77 @@ var compress = function (chars) {
   return chars.length;
 };
 
+var compress = function (chars) {
+  // use 2 pointers. Left will change the current array and right will go the the end of the array
+  let cur = chars[0];
+  let left = 0;
+  let count = 0;
+
+  for (let right = 0; right <= chars.length; right++) {
+    if (chars[right] == cur) count++;
+    else {
+      chars[left] = cur;
+
+      if (count > 1) {
+        let clen = count.toString();
+        for (let i = 0; i < clen.length; i++) chars[++left] = clen[i];
+      }
+
+      left++;
+      cur = chars[right];
+      count = 1;
+    }
+  }
+  console.log(chars.slice(0, left));
+  return left;
+};
+
 // let chars = ['a', 'a', 'b', 'b', 'c', 'c', 'c'];
-// let chars = ['c'];
+// let chars = ['c', 'c', 'c', 'a'];
 // let chars = ['a', 'a', 'a', 'b', 'b', 'a', 'a'];
-// let chars = ['b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'c'];
-let chars = [
-  'a',
-  'a',
-  'a',
-  'a',
-  'a',
-  'a',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'b',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-  'c',
-];
+let chars = ['a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'];
+// let chars = [
+//   'a',
+//   'a',
+//   'a',
+//   'a',
+//   'a',
+//   'a',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'b',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+//   'c',
+// ];
 
 console.log(compress(chars));
