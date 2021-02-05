@@ -27,17 +27,34 @@
 var checkIfCanBreak = function (s1, s2) {
   s1 = s1.split('').sort().join('');
   s2 = s2.split('').sort().join('');
+  let len = s1.length;
+  let c1 = 0;
+  let c2 = 0;
 
-  let check1 = false;
-  let check2 = false;
-
-  for (let i = 0; i < s1.length; i++) {
-    if (s1[i] > s2[i]) check1 = true;
-    if (s2[i] > s1[i]) check2 = true;
-
-    if (check1 && check2) return false;
+  for (let i = 0; i < len; i++) {
+    if (s1[i] >= s2[i]) c1++;
+    else break;
   }
-  return true;
+
+  for (let i = 0; i < len; i++) {
+    if (s2[i] >= s1[i]) c2++;
+    else break;
+  }
+  console.log(c1, c2, len);
+
+  return c1 < len && c2 < len ? false : true;
+
+  //   for (let i = 0; i < len; i++) {
+  //     if (s1[i] >= s2[i]) continue;
+  //     else c1 = true;
+  //   }
+
+  //   for (let i = 0; i < len; i++) {
+  //     if (s2[i] >= s1[i]) continue;
+  //     else c2 = true;
+  //   }
+
+  //   return c1 && c2 ? false : true;
 };
 
 let s1 = 'abc'; // true
