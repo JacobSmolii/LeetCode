@@ -34,6 +34,7 @@
 // path is a valid absolute Unix path.
 
 var simplifyPath = function (path) {
+  // usign stack and split function
   let st = [];
   let rest = '/';
 
@@ -44,15 +45,10 @@ var simplifyPath = function (path) {
     else if (path[i] != '.' && path[i]) st.push(path[i]);
   }
 
-  //   st = st.split(',').reverse().join('');
-  //   st.print();
-  //   console.log(st.peek());
-
   let len = st.length;
   for (let i = 0; i < len; i++) {
     if (i == len - 1) {
       rest += st[i];
-      //   rest += st[i].peek();
     } else {
       rest += `${st[i]}/`;
     }
