@@ -61,10 +61,19 @@ var invalidTransactions = function (transactions) {
   return rest;
 };
 
+// let transactions = [
+//   'alice,20,800,mtv',
+//   'alice,50,100,mtv',
+//   'alice,51,100,frankfurt',
+// ];
+
 let transactions = [
   'alice,20,800,mtv',
-  'alice,50,100,mtv',
-  'alice,51,100,frankfurt',
+  'bob,50,1200,mtv',
+  'alice,20,800,mtv',
+  'alice,50,1200,mtv',
+  'alice,20,800,mtv',
+  'alice,50,100,beijing',
 ];
 
 console.log(invalidTransactions(transactions));
