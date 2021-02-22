@@ -40,7 +40,7 @@
 // sentence consists of lowercase English letters and spaces.
 // searchWord consists of lowercase English letters.
 
-var isPrefixOfWord = function (sentence, searchWord) {
+var isPrefixOfWord1 = function (sentence, searchWord) {
   sentence = sentence.split(' ');
 
   for (let i = 0; i < sentence.length; i++) {
@@ -55,8 +55,20 @@ var isPrefixOfWord = function (sentence, searchWord) {
   return -1;
 };
 
-// let sentence = 'i love eating burger';
-// let searchWord = 'burg';
+var isPrefixOfWord = function (sentence, searchWord) {
+  sentence = sentence.split(' ');
+
+  let i = 1;
+  for (word of sentence) {
+    // if (word.indexOf(searchWord) == 0) return i; // you can do either way
+    if (word.startsWith(searchWord)) return i;
+    i++;
+  }
+  return -1;
+};
+
+let sentence = 'i love eating burger';
+let searchWord = 'burg';
 
 // let sentence = 'this problem is an easy problem';
 // let searchWord = 'pro';
@@ -64,7 +76,7 @@ var isPrefixOfWord = function (sentence, searchWord) {
 // let sentence = 'i am tired';
 // let searchWord = 'you';
 
-let sentence = 'you';
-let searchWord = 'you';
+// let sentence = 'you';
+// let searchWord = 'you';
 
 console.log(isPrefixOfWord(sentence, searchWord));
