@@ -16,31 +16,28 @@ function ListNode(val, next) {
   this.next = next === undefined ? null : next;
 }
 
-var reorderList1 = function (head) {
-  //   let map = new Map();
-  //   for (let i = 0; head; i++) {
-  //     map.set(i, head);
-  //     head = head.next;
-  //   }
-  //   console.log(map.length);
-  //   for ([key, val] of map) {
-  //     val.next = null;
-  //   }
-  //   let tail = head;
-  //   for (let i = 0; i < map.length / 2; i++) {
-  //     if (head == null) {
-  //       head = map[i];
-  //       tail = map[i];
-  //     } else {
-  //       tail.next = map[i];
-  //     }
-  //     tail.next = map[map.length - i - 1];
-  //   }
-  //   console.log(head);
-  //   console.log(map.length);
+var reorderList = function (head) {
+  let stack = [];
+  let tail = head;
+
+  while (tail) {
+    stack.push(tail);
+    tail = tail.next;
+  }
+
+  let len = stack.length;
+  tail = head;
+  for (let i = 0; i < len; i++) {
+    if (i % 2 === 0) tail.next = stack.shift();
+    else tail.next = stack.pop();
+    tail = tail.next;
+  }
+  tail.next = null;
+
+  return head;
 };
 
-var reorderList = function (head) {
+var reorderList1 = function (head) {
   function travers(list = head) {
     while (list.next && list.next.next) {
       list = list.next;
@@ -78,6 +75,6 @@ let l = new ListNode(1);
 l.next = new ListNode(2);
 l.next.next = new ListNode(3);
 l.next.next.next = new ListNode(4);
-// l.next.next.next.next = new ListNode(5);
+l.next.next.next.next = new ListNode(5);
 
 console.log(reorderList(l));
